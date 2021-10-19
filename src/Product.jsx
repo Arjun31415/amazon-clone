@@ -1,9 +1,5 @@
 import "./Product.css";
 
-// import StarBorderIcon from "@mui/icons-material/StarBorder";
-// import StarHalfIcon from "@mui/icons-material/StarHalf";
-// import StarIcon from "@mui/icons-material/Star";
-// import SvgIcon from "@mui/material/SvgIcon";
 import FullStar, { EmptyStar, HalfStar } from "./components/Stars";
 
 import React from "react";
