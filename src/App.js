@@ -5,6 +5,7 @@ import { Route, BrowserRouter as Router, Switch } from "react-router-dom";
 import Checkout from "./Checkout";
 import Header from "./Header";
 import Home from "./Home";
+import Login from "./Login";
 import React from "react";
 
 function App() {
@@ -12,8 +13,12 @@ function App() {
 		// Use BEM convention
 		<Router>
 			<div className="app">
+				{/* Header Component */}
 				<Header />
 				<Switch>
+					<Route path="/Login">
+						<Login />
+					</Route>
 					<Route path="/checkout">
 						<Checkout />
 					</Route>
@@ -24,7 +29,6 @@ function App() {
 				</Switch>
 			</div>
 		</Router>
-		// Header component
 	);
 }
 

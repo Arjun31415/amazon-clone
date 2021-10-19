@@ -23,21 +23,25 @@ export default function Header() {
 				<SearchIcon className="header__searchIcon" />
 			</div>
 			<div className="header__nav">
+				<Link to="/login" style={{ textDecoration: "none" }}>
+					<div className="header__option">
+						<span className="header__optionLine1">
+							{"Hello, Sign In"}
+						</span>
+						<span className="header__optionLine2">
+							{"Accounts & Lists"}
+						</span>
+					</div>
+				</Link>
+
 				<div className="header__option">
-					<span className="header__optionLine1"> Hello, Sign In</span>
-					<span className="header__optionLine2">
-						Accounts & Lists
-					</span>
+					<span className="header__optionLine1"> {"Returns &"}</span>
+					<span className="header__optionLine2"> {"Orders"}</span>
 				</div>
 
 				<div className="header__option">
-					<span className="header__optionLine1"> Returns &</span>
-					<span className="header__optionLine2"> Orders</span>
-				</div>
-
-				<div className="header__option">
-					<span className="header__optionLine1"> Your</span>
-					<span className="header__optionLine2"> Prime</span>
+					<span className="header__optionLine1"> {"Your"} </span>
+					<span className="header__optionLine2"> {"Prime"} </span>
 				</div>
 
 				<Link to="/checkout">
