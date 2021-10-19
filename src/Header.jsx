@@ -1,5 +1,6 @@
 import "./Header.css";
 
+import { Link } from "react-router-dom";
 import React from "react";
 import SearchIcon from "@mui/icons-material/Search";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
@@ -7,11 +8,13 @@ import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 export default function Header() {
 	return (
 		<div className="header">
-			<img
-				src="https://pngimg.com/uploads/amazon/amazon_PNG11.png"
-				className="header__logo"
-				alt="Amazon Logo"
-			/>
+			<Link to="/">
+				<img
+					src="https://pngimg.com/uploads/amazon/amazon_PNG11.png"
+					className="header__logo"
+					alt="Amazon Logo"
+				/>
+			</Link>
 			<div className="header__search">
 				<input type="text" className="header__searchInput" />
 				<SearchIcon className="header__searchIcon" />
@@ -34,12 +37,14 @@ export default function Header() {
 					<span className="header__optionLine2"> Prime</span>
 				</div>
 
-				<div className="header__optionBasket">
-					<ShoppingCartIcon />
-					<span className="header__optionLineTwo header__basketCount">
-						0
-					</span>
-				</div>
+				<Link to="/checkout">
+					<div className="header__optionBasket">
+						<ShoppingCartIcon />
+						<span className="header__optionLineTwo header__basketCount">
+							0
+						</span>
+					</div>
+				</Link>
 			</div>
 		</div>
 	);

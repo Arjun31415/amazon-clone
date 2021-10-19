@@ -17,6 +17,9 @@
 .header__logo:hover {
     border: 1px solid white;
     cursor: pointer;
+    margin-right: 19px;
+    margin-left: 19px;
+
 
 }
 
@@ -79,8 +82,8 @@
     display: flex;
     align-items: center;
     color: white;
-    margin-left: 10px;
-    margin-right: 10px;
+    margin: auto 10px;
+    height: 100%
 }
 
 .header__optionBasket:hover {
@@ -91,6 +94,5 @@
 }
 
 .header__basketCount {
-    margin-left: 10px;
-    margin-right: 10px;
+    margin: auto 10px;
 }
