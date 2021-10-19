@@ -11,6 +11,7 @@ import { v4 as uuidv4 } from "uuid";
 
 function Rating(x) {
 	if (typeof x === "undefined")
+		// return 0 star rating
 		return (
 			<>
 				<EmptyStar key={uuidv4()} className="product__rating__star" />
@@ -21,7 +22,6 @@ function Rating(x) {
 			</>
 		);
 	let components = [];
-	console.log(x);
 	for (let i = 0; i < Math.floor(x); i++) {
 		components.push(
 			<FullStar key={uuidv4()} className="product__rating__star" />
@@ -37,23 +37,22 @@ function Rating(x) {
 		);
 	return components;
 }
-
-function Product({ title, image, price, rating }) {
-	console.log(rating);
+function numberWithCommas(x) {
+	return x.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
+}
+function Product({ id, title, image, price, rating }) {
+	console.log(price.toFixed(2).toLocaleString());
 	return (
 		<div className="product">
 			<div className="product__info">
 				<p>{title}</p>
 				<p className="product__price">
 					<small>₹</small>
-					<strong>{price}</strong>
+					<strong>{numberWithCommas(price.toFixed(2))}</strong>
 				</p>
 				<div className="product__rating">{Rating(rating)}</div>
 			</div>
-			<img
-				src="https://m.media-amazon.com/images/I/71mv-swdxsL._UX522_.jpg"
-				alt="G shock red"
-			/>
+			<img src={image} alt={title + "image"} />
 			<button>Add to basket</button>
 		</div>
 	);

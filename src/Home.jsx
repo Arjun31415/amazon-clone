@@ -19,17 +19,52 @@ function Home() {
 						image="https://m.media-amazon.com/images/I/71mv-swdxsL._UX522_.jpg"
 						rating={4.5}
 					/>
-					<Product />
-					<Product />
-					<Product />
+					<Product
+						title="boAt Rockerz 550"
+						price={1499}
+						image="https://m.media-amazon.com/images/I/61F5SXdi9jL._SX522_.jpg"
+						rating={4}
+					/>
+					<Product
+						title="10.or Crafted for Amazon Cosmos Smartwatch"
+						image="https://m.media-amazon.com/images/I/51i302mhUBL._SX522_.jpg"
+						price={1799}
+						rating={3.5}
+					/>
+					<Product
+						title="Hyper X Cloud Stinger Core"
+						image="https://m.media-amazon.com/images/I/512qH+i8PLS._SX522_.jpg"
+						price={2790}
+						rating={4}
+					/>
 				</div>
 				<div className="home__row">
-					<Product />
-					<Product />
-					<Product />
+					<Product
+						title="Hyper X Cloud Stinger Core"
+						image="https://m.media-amazon.com/images/I/61bVcEoMx3L._SX522_.jpg"
+						price={2790}
+						rating={4}
+					/>
+					<Product
+						title="Hyper X Cloud Stinger Core"
+						image="https://m.media-amazon.com/images/I/61bVcEoMx3L._SX522_.jpg"
+						price={2790}
+						rating={4}
+					/>
+					<Product
+						title="Hyper X Cloud Stinger Core"
+						image="https://m.media-amazon.com/images/I/61bVcEoMx3L._SX522_.jpg"
+						price={2790}
+						rating={4}
+					/>
 				</div>
 				<div className="home__row">
-					<Product />
+					<Product
+						title="Samsung 34-inch (86.40cm) Curved Monitor- 21:9 Ultrawide QLED, Thunderbolt 3 Port- LC34J791WTWXXL, Gray "
+						image="https://m.media-amazon.com/images/I/91pi34PiUPL._SX522_.jpg"
+						price={25999}
+						rating={4}
+					/>
 				</div>
 			</div>
 		</div>
