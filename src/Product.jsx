@@ -3,6 +3,7 @@ import "./Product.css";
 import FullStar, { EmptyStar, HalfStar } from "./components/Stars";
 
 import React from "react";
+import { useStateValue } from "./StateProvider";
 import { v4 as uuidv4 } from "uuid";
 
 function Rating(x) {
@@ -37,6 +38,21 @@ function numberWithCommas(x) {
 	return x.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
 }
 function Product({ id, title, image, price, rating }) {
+	const [{ basket }, dispatch] = useStateValue();
+	console.log(basket);
+	const addToBasket = () => {
+		// Add the item into the Data Layer
+		dispatch({
+			type: "ADD_TO_BASKET",
+			item: {
+				id: id,
+				title: title,
+				image: image,
+				price: price,
+				rating: rating,
+			},
+		});
+	};
 	console.log(price.toFixed(2).toLocaleString());
 	return (
 		<div className="product">
@@ -49,7 +65,7 @@ function Product({ id, title, image, price, rating }) {
 				<div className="product__rating">{Rating(rating)}</div>
 			</div>
 			<img src={image} alt={title + "image"} />
-			<button>Add to basket</button>
+			<button onClick={addToBasket}>Add to basket</button>
 		</div>
 	);
 }

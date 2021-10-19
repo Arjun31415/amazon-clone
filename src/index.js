@@ -12,7 +12,7 @@ import reportWebVitals from "./reportWebVitals";
 
 ReactDOM.render(
 	<React.StrictMode>
-		<StateProvider initalState={initialState} reducer={reducer}>
+		<StateProvider initialState={initialState} reducer={reducer}>
 			<App />
 		</StateProvider>
 	</React.StrictMode>,
