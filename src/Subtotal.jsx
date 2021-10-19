@@ -6,9 +6,8 @@ import { useStateValue } from "./StateProvider";
 
 function getBasketTotal(basket) {
 	let price = 0;
-	for (let item of basket) {
-		price += item.price;
-	}
+	for (let item of basket) price += item.price;
+
 	return price;
 }
 function Subtotal() {
