@@ -1,39 +1,9 @@
 import "./Product.css";
 
-import FullStar, { EmptyStar, HalfStar } from "./components/Stars";
-
+import Rating from "./components/Rating";
 import React from "react";
 import { useStateValue } from "./StateProvider";
-import { v4 as uuidv4 } from "uuid";
 
-function Rating(x) {
-	if (typeof x === "undefined")
-		// return 0 star rating
-		return (
-			<>
-				<EmptyStar key={uuidv4()} className="product__rating__star" />
-				<EmptyStar key={uuidv4()} className="product__rating__star" />
-				<EmptyStar key={uuidv4()} className="product__rating__star" />
-				<EmptyStar key={uuidv4()} className="product__rating__star" />
-				<EmptyStar key={uuidv4()} className="product__rating__star" />
-			</>
-		);
-	let components = [];
-	for (let i = 0; i < Math.floor(x); i++) {
-		components.push(
-			<FullStar key={uuidv4()} className="product__rating__star" />
-		);
-	}
-	if (x !== Math.floor(x))
-		components.push(
-			<HalfStar key={uuidv4()} className="product__rating__star" />
-		);
-	for (let i = 0; i < 5 - Math.ceil(x); i++)
-		components.push(
-			<EmptyStar key={uuidv4()} className="product__rating__star" />
-		);
-	return components;
-}
 function numberWithCommas(x) {
 	return x.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
 }
