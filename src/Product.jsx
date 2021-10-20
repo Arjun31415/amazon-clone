@@ -9,7 +9,6 @@ function numberWithCommas(x) {
 }
 function Product({ id, title, image, price, rating }) {
 	const [{ basket }, dispatch] = useStateValue();
-	console.log(basket);
 	const addToBasket = () => {
 		// Add the item into the Data Layer
 		dispatch({
@@ -23,7 +22,6 @@ function Product({ id, title, image, price, rating }) {
 			},
 		});
 	};
-	console.log(price.toFixed(2).toLocaleString());
 	return (
 		<div className="product">
 			<div className="product__info">
