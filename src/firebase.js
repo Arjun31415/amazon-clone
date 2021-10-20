@@ -1,8 +1,6 @@
-import { createUserWithEmailAndPassword, getAuth } from "firebase/auth";
-import firebase, { initializeApp } from "firebase/app";
-
-import { getAnalytics } from "firebase/analytics";
+import { getAuth } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
+import { initializeApp } from "firebase/app";
 
 // https://firebase.google.com/docs/web/setup#available-libraries
 

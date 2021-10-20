@@ -8,7 +8,7 @@ function numberWithCommas(x) {
 	return x.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
 }
 function Product({ id, title, image, price, rating }) {
-	const [{ basket }, dispatch] = useStateValue();
+	const [, dispatch] = useStateValue();
 	const addToBasket = () => {
 		// Add the item into the Data Layer
 		dispatch({

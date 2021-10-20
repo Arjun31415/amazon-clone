@@ -17,7 +17,7 @@ export default function Login(props) {
 			.then((userCredential) => {
 				// Signed in
 				console.log(userCredential);
-				const user = userCredential.user;
+				// const user = userCredential.user;
 				if (userCredential) {
 					history.push("/");
 				}
@@ -35,7 +35,7 @@ export default function Login(props) {
 			.then((userCredential) => {
 				// Signed in
 				console.log(userCredential);
-				const user = userCredential.user;
+				// const user = userCredential.user;
 				if (userCredential) {
 					history.push("/");
 				}
