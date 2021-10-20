@@ -1,9 +1,8 @@
 import "./Checkout.css";
 
-import React, { forwardRef } from "react";
-
 import CheckoutProduct from "./CheckoutProduct";
 import FlipMove from "react-flip-move";
+import React from "react";
 import Subtotal from "./Subtotal";
 import { useStateValue } from "./StateProvider";
 import { v4 as uuidv4 } from "uuid";
