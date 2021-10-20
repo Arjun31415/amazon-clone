@@ -1,12 +1,30 @@
 import "./Payment.css";
 
+import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
+import React, { useState } from "react";
+
 import CheckoutProduct from "./CheckoutProduct";
+import CurrencyFormat from "react-currency-format";
 import { Link } from "react-router-dom";
-import React from "react";
+import { getBasketTotal } from "./reducer";
 import { useStateValue } from "./StateProvider";
 
 function Payment() {
 	const [{ basket, user }] = useStateValue();
+
+	const [error, setError] = useState(null);
+	const [disabled, setDisabled] = useState(true);
+	const [succeeded, setSucceeded] = useState(true);
+	const [processing, setProcessing] = useState(true);
+
+	const stripe = useStripe(),
+		elements = useElements();
+	const handleSubmit = (e) => {};
+	function handleChange(e) {
+		// Listen for changes in CardElement and display and errors
+		setDisabled(e.empty);
+		setError(e.error ? e.error.message : "");
+	}
 	return (
 		<div className="payment">
 			<div className="payment__container">
@@ -49,7 +67,39 @@ function Payment() {
 					<div className="payment__title">
 						<h3>Payment Method</h3>
 					</div>
-					<div className="payment__details">{/* Stripe stuff */}</div>
+					<div className="payment__details">
+						{/* Stripe stuff */}
+						<form action="post" onSubmit={handleSubmit}>
+							<CardElement onChange={handleChange} />
+							<div className="payment__priceContainer">
+								<CurrencyFormat
+									renderText={(value) => (
+										<h3>Order Total: {value}</h3>
+									)}
+									decimalScale={2}
+									value={getBasketTotal(basket)}
+									displayType={"text"}
+									thousandSeparator={true}
+									prefix={"₹"}
+								/>
+								<button
+									disabled={
+										processing || disabled || succeeded
+									}
+								>
+									<span>
+										{processing ? (
+											<p>Processing</p>
+										) : (
+											"Buy Now"
+										)}
+									</span>
+								</button>
+							</div>
+							{/* Show the errors */}
+							{error && <div>{error}</div>}
+						</form>
+					</div>
 				</div>
 			</div>
 		</div>
