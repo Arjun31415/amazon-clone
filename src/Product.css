@@ -14,6 +14,35 @@
     top: -450px;
 }
 
+/* Small devices (landscape phones, 576px and up) */
+@media (min-width: 576px) {
+    .product {
+        flex: 100%;
+    }
+}
+
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) {
+    .product {
+        flex: 40%;
+    }
+}
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+    .product {
+        flex: 25%;
+    }
+}
+
+/* Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+    .product {
+        flex: 5%;
+    }
+}
+
+
 .product__price {
     margin-top: 5px;
 }
