@@ -52,26 +52,26 @@ function Home() {
 					<Product
 						key={"12345604"}
 						id={"12345604"}
-						title="Hyper X Cloud Stinger Core"
-						image="https://m.media-amazon.com/images/I/61bVcEoMx3L._SX522_.jpg"
-						price={2790}
+						title="OnePlus Nord CE 5G (Blue Void, 8GB RAM, 128GB Storage) "
+						image="https://m.media-amazon.com/images/I/61iy2Ru9KdS._SX679_.jpg"
+						price={24999}
 						rating={4}
 					/>
 					<Product
 						key={"12345605"}
 						id={"12345605"}
-						title="Hyper X Cloud Stinger Core"
-						image="https://m.media-amazon.com/images/I/61bVcEoMx3L._SX522_.jpg"
+						title="CORSAIR K60 RGB PRO SE Mechanical Gaming Keyboard - Cherry Mechanical Keyswitches - Durable Aluminum Frame - Customizable Per-Key RGB Backlighting - PBT Double-Shot Keycaps - Detachable Palm Rest"
+						image="https://m.media-amazon.com/images/I/81hNDJU2QML._SX522_.jpg"
 						price={2790}
 						rating={4}
 					/>
 					<Product
 						key={"12345606"}
 						id={"12345606"}
-						title="Hyper X Cloud Stinger Core"
-						image="https://m.media-amazon.com/images/I/61bVcEoMx3L._SX522_.jpg"
+						title='Lenovo Legion M200 RGB Gaming Wired USB Mouse GX30P93886, Ambidextrous, 5-buttons, upto 2400 DPI with 4 levels DPI switch, 7-colour RGB backlight, 500fps frame rate, upto 30" per second movement speed '
+						image="https://m.media-amazon.com/images/I/61ROx1hBZyL._SX522_.jpg"
 						price={2790}
-						rating={4}
+						rating={4.5}
 					/>
 				</div>
 				<div className="home__row">
