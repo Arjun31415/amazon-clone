@@ -1,9 +1,12 @@
 import "./Checkout.css";
 
+import React, { forwardRef } from "react";
+
 import CheckoutProduct from "./CheckoutProduct";
-import React from "react";
+import FlipMove from "react-flip-move";
 import Subtotal from "./Subtotal";
 import { useStateValue } from "./StateProvider";
+import { v4 as uuidv4 } from "uuid";
 
 function Checkout() {
 	const [{ basket, user }] = useStateValue();
@@ -21,14 +24,21 @@ function Checkout() {
 						{"Your Shopping Basket"}
 					</h2>
 					{/* Bunch of basket items */}
+
 					{basket.map((item) => (
-						<CheckoutProduct
-							id={item.id}
-							title={item.title}
-							image={item.image}
-							price={item.price}
-							rating={item.rating}
-						/>
+						<FlipMove
+							enterAnimation="accordionVertical"
+							leaveAnimation="accordionVertical"
+						>
+							<CheckoutProduct
+								key={uuidv4()}
+								id={item.id}
+								title={item.title}
+								image={item.image}
+								price={item.price}
+								rating={item.rating}
+							/>
+						</FlipMove>
 					))}
 				</div>
 			</div>
