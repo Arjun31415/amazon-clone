@@ -5,7 +5,7 @@ import React from "react";
 import { useStateValue } from "./StateProvider";
 
 function CheckoutProduct({ id, image, title, price, rating }) {
-	const [state, dispatch] = useStateValue();
+	const [, dispatch] = useStateValue();
 	function removeFromBasket() {
 		// console.log(id);
 		dispatch({

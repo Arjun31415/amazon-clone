@@ -11,7 +11,8 @@ import { auth } from "./firebase";
 import { useStateValue } from "./StateProvider";
 
 function App() {
-	const [{}, dispatch] = useStateValue();
+	const [state, dispatch] = useStateValue();
+	console.log(state);
 	useEffect(() => {
 		// will only run once when app component loads.
 		auth.onAuthStateChanged((authUser) => {
@@ -32,7 +33,7 @@ function App() {
 				});
 			}
 		});
-	}, []);
+	}, [dispatch]);
 
 	return (
 		// Use BEM convention
