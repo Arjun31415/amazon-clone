@@ -23,22 +23,23 @@ function Checkout() {
 						{"Your Shopping Basket"}
 					</h2>
 					{/* Bunch of basket items */}
-
-					{basket.map((item) => (
-						<FlipMove
-							enterAnimation="accordionVertical"
-							leaveAnimation="accordionVertical"
-						>
+					<FlipMove
+						leaveAnimation="accordionHorizontal"
+						enterAnimation="elevator"
+						duration="100"
+						// key={uuidv4()}
+					>
+						{basket.map((item, idx) => (
 							<CheckoutProduct
-								key={uuidv4()}
 								id={item.id}
+								key={item.id + idx.toString()}
 								title={item.title}
 								image={item.image}
 								price={item.price}
 								rating={item.rating}
 							/>
-						</FlipMove>
-					))}
+						))}
+					</FlipMove>
 				</div>
 			</div>
 

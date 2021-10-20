@@ -21,17 +21,18 @@ const reducer = (state, action) => {
 			const idx = state.basket.findIndex((item) => item.id === action.id);
 			let newBasket = [...state.basket];
 			if (idx >= 0) {
-				newBasket.splice(idx, 1);
+				// newBasket.splice(idx, 1);
+				return {
+					...state,
+					basket: state.basket.filter((_item, i) => idx !== i),
+				};
 			} else {
 				console.warn(
 					`Cannot remove this product (id:${action.id}.
                     Not found in Basket (basket: ${state.basket}) `
 				);
+				return state;
 			}
-			return {
-				...state,
-				basket: newBasket,
-			};
 		}
 		case "SET_USER":
 			return {

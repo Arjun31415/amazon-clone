@@ -4,6 +4,7 @@ import React, { forwardRef } from "react";
 
 import Rating from "./components/Rating";
 import { useStateValue } from "./StateProvider";
+import { v4 as uuidv4 } from "uuid";
 
 const CheckoutProduct = forwardRef(
 	({ id, image, title, price, rating }, ref) => {
@@ -16,7 +17,7 @@ const CheckoutProduct = forwardRef(
 			});
 		}
 		return (
-			<div className="checkoutProduct" ref={ref}>
+			<div key={uuidv4()} className="checkoutProduct" ref={ref}>
 				<img
 					className="checkoutProduct__image"
 					src={image}
