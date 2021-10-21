@@ -32,7 +32,7 @@ function Payment() {
 				// Stripe expects the total in a currencies sub-units
 				url: `/payments/create?total=${getBasketTotal(basket) * 100}`,
 				headers: {
-					"Access-Control-Allow-Origin": "http://localhost",
+					"Access-Control-Allow-Origin": "*",
 				},
 			});
 			setClientSecret(res.data.clientSecret);
