@@ -7,7 +7,7 @@ import { useStateValue } from "./StateProvider";
 import { v4 as uuidv4 } from "uuid";
 
 const CheckoutProduct = forwardRef(
-	({ id, image, title, price, rating }, ref) => {
+	({ id, image, title, price, rating, hideBtn }, ref) => {
 		const [, dispatch] = useStateValue();
 		function removeFromBasket() {
 			// console.log(id);
@@ -33,9 +33,11 @@ const CheckoutProduct = forwardRef(
 					<div className="checkoutProduct__rating">
 						{Rating(rating)}
 					</div>
-					<button onClick={removeFromBasket}>
-						{"Remove from Basket"}
-					</button>
+					{!hideBtn && (
+						<button onClick={removeFromBasket}>
+							{"Remove from Basket"}
+						</button>
+					)}
 				</div>
 			</div>
 		);
