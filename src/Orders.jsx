@@ -1,11 +1,72 @@
 import "./Orders.css";
 
-import React from "react";
+import React, { useCallback, useEffect, useState } from "react";
+import { collection, getDocs, orderBy, query } from "@firebase/firestore";
+
+import CheckoutProduct from "./CheckoutProduct";
+import { db } from "./firebase";
+import { useStateValue } from "./StateProvider";
 
 function Orders() {
+	const [{ user }] = useStateValue();
+	const [orders, setOrders] = useState([]);
+
+	const fetchData = useCallback(async () => {
+		console.log("User in orders: ", user);
+
+		try {
+			if (user) {
+				const myQuery = query(
+					collection(db, "users", user?.uid, "orders"),
+					orderBy("created", "desc")
+				);
+				const ordersSnapshot = await getDocs(myQuery);
+				setOrders(
+					ordersSnapshot.docs.map((doc) => ({
+						id: doc.id,
+						data: doc.data(),
+					}))
+				);
+			} else {
+				setOrders([]);
+			}
+			// ordersSnapshot.forEach((doc) => {
+			// 	console.log(doc.id, "=>", doc.data());
+			// });
+		} catch (error) {
+			console.error(error);
+		}
+	}, [user]);
+	console.log(orders);
+
+	useEffect(() => {
+		fetchData();
+	}, [fetchData]);
 	return (
 		<div className="orders">
 			<h1>Your Orders</h1>
+			{orders.map((order) => {
+				console.log(order.data);
+				// The actual items
+				return (
+					<div
+						className="myshit"
+						style={{ border: "1px solid lightgray" }}
+					>
+						{order.data.basket.map((item, i) => {
+							return (
+								<CheckoutProduct
+									image={item.image}
+									key={item.id + i.toString()}
+									price={item.price}
+									title={item.title}
+									rating={item.rating}
+								/>
+							);
+						})}
+					</div>
+				);
+			})}
 		</div>
 	);
 }

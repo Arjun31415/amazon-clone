@@ -8,6 +8,7 @@ import { Elements } from "@stripe/react-stripe-js";
 import Header from "./Header";
 import Home from "./Home";
 import Login from "./Login";
+import Orders from "./Orders";
 import Payment from "./Payment";
 import { auth } from "./firebase";
 import { loadStripe } from "@stripe/stripe-js";
@@ -64,6 +65,9 @@ function App() {
 						<Elements stripe={promise}>
 							<Payment />
 						</Elements>
+					</Route>
+					<Route path="/orders">
+						<Orders />
 					</Route>
 
 					{/* Default route must be at the bottom */}
