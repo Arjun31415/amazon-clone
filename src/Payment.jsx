@@ -1,13 +1,14 @@
-/* eslint-disable no-unused-vars */
 import "./Payment.css";
 
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import { Link, useHistory } from "react-router-dom";
 import React, { useEffect, useState } from "react";
+import { doc, setDoc } from "firebase/firestore";
 
 import CheckoutProduct from "./CheckoutProduct";
 import CurrencyFormat from "react-currency-format";
 import axios from "./axios";
+import { db } from "./firebase";
 import { getBasketTotal } from "./reducer";
 import { useStateValue } from "./StateProvider";
 
@@ -20,7 +21,7 @@ function Payment() {
 	const [disabled, setDisabled] = useState(true);
 	const [clientSecret, setClientSecret] = useState(true);
 	const history = useHistory();
-	const [state, dispatch] = useStateValue();
+	const [, dispatch] = useStateValue();
 
 	useEffect(() => {
 		// generate stripe secret
@@ -30,6 +31,9 @@ function Payment() {
 				method: "post",
 				// Stripe expects the total in a currencies sub-units
 				url: `/payments/create?total=${getBasketTotal(basket) * 100}`,
+				headers: {
+					"Access-Control-Allow-Origin": "http://localhost",
+				},
 			});
 			setClientSecret(res.data.clientSecret);
 		};
@@ -42,14 +46,34 @@ function Payment() {
 	const handleSubmit = async (event) => {
 		event.preventDefault();
 		setProcessing(true);
-		const payload = await stripe
+		await stripe
 			.confirmCardPayment(clientSecret, {
 				payment_method: {
 					card: elements.getElement(CardElement),
 				},
 			})
-			.then(({ paymentIntent }) => {
+			.then(async ({ paymentIntent }) => {
 				// paymentIntent is the payment confirmation
+
+				// ver8 Firebase SDK
+
+				// db.collection("users")
+				// 	.doc(user?.uid)
+				// 	.collection("orders")
+				// 	.doc(paymentIntent.id)
+				// 	.set({
+				// 		basket: basket,
+				// 		amount: paymentIntent.amount,
+				// 		created: paymentIntent.created,
+				// 	});
+				const docRef = await setDoc(
+					doc(db, "users", user?.uid, "orders", paymentIntent.id),
+					{
+						basket: basket,
+						amount: paymentIntent.amount,
+						created: paymentIntent.created,
+					}
+				);
 				console.log("Payment succeeded\n");
 				setSucceeded(true);
 				setError(null);
@@ -57,6 +81,7 @@ function Payment() {
 				dispatch({ type: "EMPTY_BASKET" });
 
 				history.replace("/orders");
+				console.log("Document inserted: ", docRef);
 			});
 	};
 	function handleChange(e) {
