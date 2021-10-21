@@ -19,9 +19,7 @@ const reducer = (state, action) => {
 			// console.log(state.basket);
 			// console.log("action id: ", action.id);
 			const idx = state.basket.findIndex((item) => item.id === action.id);
-			// let newBasket = [...state.basket];
 			if (idx >= 0) {
-				// newBasket.splice(idx, 1);
 				return {
 					...state,
 					basket: state.basket.filter((_item, i) => idx !== i),
@@ -34,6 +32,8 @@ const reducer = (state, action) => {
 				return state;
 			}
 		}
+		case "EMPTY_BASKET":
+			return { ...state, basket: [] };
 		case "SET_USER":
 			return {
 				...state,

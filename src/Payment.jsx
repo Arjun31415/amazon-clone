@@ -1,25 +1,64 @@
+/* eslint-disable no-unused-vars */
 import "./Payment.css";
 
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
-import React, { useState } from "react";
+import { Link, useHistory } from "react-router-dom";
+import React, { useEffect, useState } from "react";
 
 import CheckoutProduct from "./CheckoutProduct";
 import CurrencyFormat from "react-currency-format";
-import { Link } from "react-router-dom";
+import axios from "./axios";
 import { getBasketTotal } from "./reducer";
 import { useStateValue } from "./StateProvider";
 
 function Payment() {
 	const [{ basket, user }] = useStateValue();
 
+	const [succeeded, setSucceeded] = useState(false);
+	const [processing, setProcessing] = useState("");
 	const [error, setError] = useState(null);
 	const [disabled, setDisabled] = useState(true);
-	const [succeeded, setSucceeded] = useState(true);
-	const [processing, setProcessing] = useState(true);
+	const [clientSecret, setClientSecret] = useState(true);
+	const history = useHistory();
+	const [state, dispatch] = useStateValue();
+
+	useEffect(() => {
+		// generate stripe secret
+		// whenever the basket changes the secret changes
+		const getClientsSecret = async () => {
+			const res = await axios({
+				method: "post",
+				// Stripe expects the total in a currencies sub-units
+				url: `/payments/create?total=${getBasketTotal(basket) * 100}`,
+			});
+			setClientSecret(res.data.clientSecret);
+		};
+		getClientsSecret();
+	}, [basket]);
+	// console.log("Client Secret: ", clientSecret);
 
 	const stripe = useStripe(),
 		elements = useElements();
-	const handleSubmit = (e) => {};
+	const handleSubmit = async (event) => {
+		event.preventDefault();
+		setProcessing(true);
+		const payload = await stripe
+			.confirmCardPayment(clientSecret, {
+				payment_method: {
+					card: elements.getElement(CardElement),
+				},
+			})
+			.then(({ paymentIntent }) => {
+				// paymentIntent is the payment confirmation
+				console.log("Payment succeeded\n");
+				setSucceeded(true);
+				setError(null);
+				setProcessing(false);
+				dispatch({ type: "EMPTY_BASKET" });
+
+				history.replace("/orders");
+			});
+	};
 	function handleChange(e) {
 		// Listen for changes in CardElement and display and errors
 		setDisabled(e.empty);
