@@ -4,8 +4,58 @@ import React, { useCallback, useEffect, useState } from "react";
 import { collection, getDocs, orderBy, query } from "@firebase/firestore";
 
 import CheckoutProduct from "./CheckoutProduct";
+import CurrencyFormat from "react-currency-format";
 import { db } from "./firebase";
+import moment from "moment";
 import { useStateValue } from "./StateProvider";
+
+function Order({ order }) {
+	console.log(order.data.amount / 100);
+	return (
+		<div className="order" style={{ border: "1px solid lightgray" }}>
+			{/* Put the Product details  */}
+			<p>
+				{moment.unix(order.data.created).format("Do MMMM YYY, h:mma ")}
+			</p>
+			<p className="order__id">
+				<small>{order.id}</small>
+			</p>
+			{order.data.basket?.map((item, i) => {
+				return (
+					<CheckoutProduct
+						image={item.image}
+						key={item.id + i.toString()}
+						price={item.price}
+						title={item.title}
+						rating={item.rating}
+						id={item.id}
+						hideBtn={true}
+					/>
+				);
+			})}
+			{/* <CurrencyFormat
+				renderText={(value) => {
+					<h3 className="order__total">Order Total: {value}</h3>;
+				}}
+				decimalScale={2}
+				value={order.data.amount}
+				displayType={"text"}
+				thousandSeparator={true}
+				prefix={"₹"}
+			/> */}
+			<CurrencyFormat
+				renderText={(value) => (
+					<h3 className="order__total">{`Order Total: ${value}`}</h3>
+				)}
+				decimalScale={2}
+				value={order.data.amount}
+				displayType={"text"}
+				thousandSeparator={true}
+				prefix={"₹"}
+			/>
+		</div>
+	);
+}
 
 function Orders() {
 	const [{ user }] = useStateValue();
@@ -20,7 +70,9 @@ function Orders() {
 					collection(db, "users", user?.uid, "orders"),
 					orderBy("created", "desc")
 				);
+				// Get the snapshot which is real-time values and will update when there is a change in the DB
 				const ordersSnapshot = await getDocs(myQuery);
+
 				setOrders(
 					ordersSnapshot.docs.map((doc) => ({
 						id: doc.id,
@@ -48,24 +100,7 @@ function Orders() {
 			{orders.map((order) => {
 				console.log(order.data);
 				// The actual items
-				return (
-					<div
-						className="myshit"
-						style={{ border: "1px solid lightgray" }}
-					>
-						{order.data.basket.map((item, i) => {
-							return (
-								<CheckoutProduct
-									image={item.image}
-									key={item.id + i.toString()}
-									price={item.price}
-									title={item.title}
-									rating={item.rating}
-								/>
-							);
-						})}
-					</div>
-				);
+				return <Order order={order} />;
 			})}
 		</div>
 	);
