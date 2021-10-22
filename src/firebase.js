@@ -5,14 +5,15 @@ import { initializeApp } from "firebase/app";
 // https://firebase.google.com/docs/web/setup#available-libraries
 
 const firebaseConfig = {
-	apiKey: "AIzaSyDXPt15SJP0yqmfxIGmICz2QpxpNbgzCQ8",
-	authDomain: "clone-5943a.firebaseapp.com",
+	apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
+	authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
 	projectId: "clone-5943a",
 	storageBucket: "clone-5943a.appspot.com",
-	messagingSenderId: "233487007814",
-	appId: "1:233487007814:web:420e0fe544e4d8880c0a47",
-	measurementId: "G-P01WSGRTQ0",
+	messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
+	appId: process.env.REACT_APP_FIREBASE_APP_ID,
+	measurementId: process.env.REACT_APP_FIREBASE_MEASUREMENT_ID,
 };
+console.log("FIrebase", firebaseConfig);
 const firebaseApp = initializeApp(firebaseConfig);
 const db = getFirestore(firebaseApp);
 const auth = getAuth(firebaseApp);
