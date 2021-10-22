@@ -1,6 +1,6 @@
 import "./Product.css";
 
-import Rating from "./components/Rating";
+import Rating from "./Rating";
 import React from "react";
 import { useStateValue } from "./StateProvider";
 

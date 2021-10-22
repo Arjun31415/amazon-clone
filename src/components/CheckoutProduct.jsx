@@ -2,7 +2,7 @@ import "./CheckoutProduct.css";
 
 import React, { forwardRef } from "react";
 
-import Rating from "./components/Rating";
+import Rating from "./Rating";
 import { useStateValue } from "./StateProvider";
 import { v4 as uuidv4 } from "uuid";
 
