@@ -27,3 +27,4 @@ functions/firebase-debug.log
 *.log
 .github/workflows/firebase-hosting-merge.yml
 .github/workflows/firebase-hosting-merge-temp.yml
+list.txt
