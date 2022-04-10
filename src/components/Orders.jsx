@@ -33,16 +33,6 @@ function Order({ order }) {
 					/>
 				);
 			})}
-			{/* <CurrencyFormat
-				renderText={(value) => {
-					<h3 className="order__total">Order Total: {value}</h3>;
-				}}
-				decimalScale={2}
-				value={order.data.amount}
-				displayType={"text"}
-				thousandSeparator={true}
-				prefix={"₹"}
-			/> */}
 			<CurrencyFormat
 				renderText={(value) => (
 					<h3 className="order__total">{`Order Total: ${value}`}</h3>
@@ -82,9 +72,6 @@ function Orders() {
 			} else {
 				setOrders([]);
 			}
-			// ordersSnapshot.forEach((doc) => {
-			// 	console.log(doc.id, "=>", doc.data());
-			// });
 		} catch (error) {
 			console.error(error);
 		}
