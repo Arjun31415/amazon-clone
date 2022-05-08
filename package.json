@@ -22,7 +22,7 @@
     "react-flip-move": "^3.0.4",
     "react-router-dom": "^5.3.0",
     "react-scripts": "^5.0.1",
-    "stripe": "^8.210.0",
+    "stripe": "^8.217.0",
     "uuid": "^8.3.2",
     "web-vitals": "^1.1.2"
   },
