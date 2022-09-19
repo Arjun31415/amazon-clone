@@ -5,7 +5,7 @@
   "dependencies": {
     "@emotion/react": "^11.8.1",
     "@emotion/styled": "^11.10.0",
-    "@mui/icons-material": "^5.10.2",
+    "@mui/icons-material": "^5.10.3",
     "@mui/material": "^5.9.3",
     "@stripe/react-stripe-js": "^1.10.0",
     "@stripe/stripe-js": "^1.32.0",
