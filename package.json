@@ -6,7 +6,7 @@
     "@emotion/react": "^11.8.1",
     "@emotion/styled": "^11.10.5",
     "@mui/icons-material": "^5.10.14",
-    "@mui/material": "^5.10.13",
+    "@mui/material": "^5.10.15",
     "@stripe/react-stripe-js": "^1.15.0",
     "@stripe/stripe-js": "^1.44.1",
     "@testing-library/jest-dom": "^5.16.5",
