@@ -20,7 +20,7 @@ const firebaseConfig = {
 	appId: config.REACT_APP_FIREBASE_APP_ID,
 	measurementId: config.REACT_APP_FIREBASE_MEASUREMENT_ID,
 };
-// console.log("FIrebase", firebaseConfig);
+console.log("FIrebase", firebaseConfig);
 const firebaseApp = initializeApp(firebaseConfig);
 const db = getFirestore(firebaseApp);
 const auth = getAuth(firebaseApp);

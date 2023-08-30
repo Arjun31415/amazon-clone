@@ -11,6 +11,9 @@
 # production
 /build
 
+#nixos stuff
+.direnv/
+
 # misc
 .DS_Store
 .env.local
