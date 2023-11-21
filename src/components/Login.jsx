@@ -5,7 +5,7 @@ import React, { useState } from "react";
 import {
 	createUserWithEmailAndPassword,
 	signInWithEmailAndPassword,
-} from "@firebase/auth";
+} from "firebase/auth";
 
 import { auth } from "./firebase";
 
